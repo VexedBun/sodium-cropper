@@ -1,0 +1,40 @@
+.sodium-cropper {
+
+  width:400px;
+  border:1px solid #ddd;
+  padding:20px;
+
+  input[type=file] {
+    width:0.1px;
+    height:0.1px;
+    opacity:0;
+    overflow:hidden;
+    position:absolute;
+    z-index:-1;
+  }
+
+  label.file-label {
+    color:white;
+    cursor:pointer;
+    background:#367fa9;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 1.42857143;
+    margin:0px;
+  }
+
+  img.preview {
+    max-width:100%;
+    width: 100%;
+  }
+
+  img[src=""] {
+    display: none;
+  }
+}

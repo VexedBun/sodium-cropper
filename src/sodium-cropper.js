@@ -1,8 +1,9 @@
 /*!
  * Sodium Cropper
  * Author: Kristian Cox
- * Description: A jQuery plugin that extends cropper.
- * Version: 0.12.0
+ * Description: A jQuery plugin that extends cropper, allowing for easy
+ * integration with Sodium.
+ * Version: 1.2.0
  */
 
 if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded before this.");
@@ -11,7 +12,7 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
     $.fn.sodiumCropper = function(config){
         "use strict";
 
-        var version = '0.12.0';
+        var version = '1.2.0';
 
         // Check if cropper plugin exists
         if (!$.fn.Cropper) {
@@ -114,6 +115,9 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
                     reader.readAsDataURL(this.files[0]);
                 }
 
+                $element.find('input[type="hidden"][name="'+ el_settings.prefix + '"]').remove();
+                $fileInput.attr('name', el_settings.prefix);
+
             });
 
             $btn_remove.on('click', function(e){
@@ -138,6 +142,9 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
                 $crop_h.val('');
 
                 $fileInput.val('');
+
+                $fileInput.removeAttr('name');
+                $element.prepend('<input type="hidden" name="'+ el_settings.prefix + '">');
 
                 $(this).hide();
             });

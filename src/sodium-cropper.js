@@ -29,7 +29,7 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
         }
 
         // Override default settings if supplied
-        var settings = $.extend({}, {
+        var settings = $.extend(true, {}, {
             prefix      : '',
             placeholder : false,
             elements    : {
@@ -57,7 +57,7 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
             var el_settings             = settings;
 
             if ($element.attr('data-config')) {
-                el_settings = $.extend({},settings, $element.data('config'));
+                el_settings = $.extend(true, {},settings, $element.data('config'));
             }
 
             console.log(el_settings);

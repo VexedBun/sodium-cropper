@@ -3,7 +3,7 @@
  * Author: Kristian Cox
  * Description: A jQuery plugin that extends cropper, allowing for easy
  * integration with Sodium.
- * Version: 1.2.0
+ * Version: 1.3.0
  */
 
 if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded before this.");
@@ -12,7 +12,7 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
     $.fn.sodiumCropper = function(config){
         "use strict";
 
-        var version = '1.2.0';
+        var version = '1.3.0';
 
         // Check if cropper plugin exists
         if (!$.fn.Cropper) {
@@ -29,7 +29,7 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
         }
 
         // Override default settings if supplied
-        var settings = $.extend({
+        var settings = $.extend({}, {
             prefix      : '',
             placeholder : false,
             elements    : {
@@ -57,9 +57,10 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
             var el_settings             = settings;
 
             if ($element.attr('data-config')) {
-                el_settings = $.extend(settings, $element.data('config'));
+                el_settings = $.extend({},settings, $element.data('config'));
             }
 
+            console.log(el_settings);
 
             var $btn_remove             = $element.find(el_settings.elements.remove);
             var $preview                = $element.find(el_settings.elements.preview);
@@ -67,15 +68,15 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
             var $fileLabel              = $element.find(el_settings.elements.fileLabel);
             var $fileLabelText          = $fileLabel.text();
 
-            $element.append('<input type="hidden" name="'+ el_settings.prefix + '_x">');
-            $element.append('<input type="hidden" name="'+ el_settings.prefix + '_y">');
-            $element.append('<input type="hidden" name="'+ el_settings.prefix + '_w">');
-            $element.append('<input type="hidden" name="'+ el_settings.prefix + '_h">');
+            $element.append('<input type="hidden" name="'+ el_settings.prefix + '[coordinates][x]">');
+            $element.append('<input type="hidden" name="'+ el_settings.prefix + '[coordinates][y]">');
+            $element.append('<input type="hidden" name="'+ el_settings.prefix + '[coordinates][w]">');
+            $element.append('<input type="hidden" name="'+ el_settings.prefix + '[coordinates][h]">');
 
-            var $crop_x                 = $element.find('input[name="'+ el_settings.prefix + '_x"]');
-            var $crop_y                 = $element.find('input[name="'+ el_settings.prefix + '_y"]');
-            var $crop_w                 = $element.find('input[name="'+ el_settings.prefix + '_w"]');
-            var $crop_h                 = $element.find('input[name="'+ el_settings.prefix + '_h"]');
+            var $crop_x                 = $element.find('input[name="'+ el_settings.prefix + '[coordinates][x]"]');
+            var $crop_y                 = $element.find('input[name="'+ el_settings.prefix + '[coordinates][y]"]');
+            var $crop_w                 = $element.find('input[name="'+ el_settings.prefix + '[coordinates][w]"]');
+            var $crop_h                 = $element.find('input[name="'+ el_settings.prefix + '[coordinates][h]"]');
 
             $fileInput.on('change', function(e) {
 
@@ -117,7 +118,6 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
 
                 $element.find('input[type="hidden"][name="'+ el_settings.prefix + '"]').remove();
                 $fileInput.attr('name', el_settings.prefix);
-
             });
 
             $btn_remove.on('click', function(e){
@@ -142,7 +142,6 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
                 $crop_h.val('');
 
                 $fileInput.val('');
-
                 $fileInput.removeAttr('name');
                 $element.prepend('<input type="hidden" name="'+ el_settings.prefix + '">');
 

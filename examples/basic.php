@@ -44,6 +44,35 @@
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </form>
                 </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="sodium-cropper" data-config='{
+                            "prefix"      : "secondary_image",
+                            "elements"    : {
+                                "remove":         ".remove",
+                                "preview":        ".preview",
+                                "fileInput":      ".file-input",
+                                "fileLabel":      ".file-label"
+                            },
+                            "cropper"     : {
+                                "aspectRatio":    1,
+                                "responsive":     true,
+                                "movable":        false,
+                                "zoomable":       true,
+                                "rotatable":      false,
+                                "scalable":       false
+                            }
+                        }'>
+                            <img class="preview">
+                            <input id="secondary_image" name="secondary_image" type="file" class="file-input">
+                            <label for="secondary_image" class="file-label">Select a file...</label>
+                            <a href="#" class="btn btn-danger remove">Remove</a>
+                        </div>
+
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                    </form>
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="./vendor/jquery.min.js"></script>

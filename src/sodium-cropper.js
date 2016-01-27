@@ -3,7 +3,7 @@
  * Author: Kristian Cox
  * Description: A jQuery plugin that extends cropper, allowing for easy
  * integration with Sodium.
- * Version: 1.3.0
+ * Version: 1.3.1
  */
 
 if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded before this.");
@@ -12,7 +12,7 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
     $.fn.sodiumCropper = function(config){
         "use strict";
 
-        var version = '1.3.0';
+        var version = '1.3.1';
 
         // Check if cropper plugin exists
         if (!$.fn.Cropper) {
@@ -59,8 +59,6 @@ if("undefined"==typeof jQuery)throw new Error("Please ensure jQuery is loaded be
             if ($element.attr('data-config')) {
                 el_settings = $.extend(true, {},settings, $element.data('config'));
             }
-
-            console.log(el_settings);
 
             var $btn_remove             = $element.find(el_settings.elements.remove);
             var $preview                = $element.find(el_settings.elements.preview);
